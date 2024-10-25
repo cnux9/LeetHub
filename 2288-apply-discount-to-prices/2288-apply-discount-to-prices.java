@@ -18,8 +18,8 @@ class Solution {
     }
 
     private String discountString(String word, int discount) {
-        int price = Integer.parseInt(word.substring(1));
-        double discountedPrice = (double)price*(100-discount)/100;
+        double price = Double.parseDouble(word.substring(1));
+        double discountedPrice = price*(100-discount)/100;
         System.out.println(price + " " + discountedPrice);
         return "$"+String.format("%.2f", discountedPrice);
     }
