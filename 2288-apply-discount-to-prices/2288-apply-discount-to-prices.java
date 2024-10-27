@@ -2,6 +2,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 class Solution {
+    private static final Pattern PRICE_PATTERN = Pattern.compile("^\\$[\\d]+$");
+
     public String discountPrices(String sentence, int discount) {
         String[] words = sentence.split(" ");
         for (int i=0;i<words.length;i++) {
@@ -14,7 +16,7 @@ class Solution {
     }
 
     private boolean isPrice(String word) {
-        return Pattern.matches("^\\$[\\d]+$", word);
+        return PRICE_PATTERN.matcher(word).matches();
     }
 
     private String discountString(String word, int discount) {
