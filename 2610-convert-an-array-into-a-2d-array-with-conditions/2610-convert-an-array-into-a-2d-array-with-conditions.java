@@ -30,12 +30,8 @@ class Solution {
         for (int i=0;i<maxCount;i++) {
             answer.add(new ArrayList<>());
             var target_i = answer.get(i);
-            IntStream.Builder streamBuilder = IntStream.builder();
             for (int j=i;j<maxCount;j++) {
-                var target_j = numByCount[j];
-                for (int k=0;k<target_j.length;k++) {
-                    target_i.add(target_j[k]);
-                }
+                target_i.addAll(Arrays.stream(numByCount[j]).boxed().toList());
             }
             // System.out.println(answer.get(i).toString());
         }
