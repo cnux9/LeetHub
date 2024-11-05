@@ -26,19 +26,19 @@ class Solution {
         }
         // System.out.println();
         // make answer 2d array
-        List<Integer>[] answer = new ArrayList[maxCount];
+        List<List<Integer>> answer = new ArrayList<>();
         for (int i=0;i<maxCount;i++) {
-            var target_i = answer[i];
+            answer.add(new ArrayList<>());
+            var target_i = answer.get(i);
             IntStream.Builder streamBuilder = IntStream.builder();
             for (int j=i;j<maxCount;j++) {
                 var target_j = numByCount[j];
                 for (int k=0;k<target_j.length;k++) {
-                    streamBuilder.add(target_j[k]);
+                    target_i.add(target_j[k]);
                 }
             }
-            answer[i] = streamBuilder.build().boxed().collect(Collectors.toList());
-            // System.out.println(answer[i].toString());
+            // System.out.println(answer.get(i).toString());
         }
-        return Arrays.stream(answer).toList();
+        return answer;
     }
 }
