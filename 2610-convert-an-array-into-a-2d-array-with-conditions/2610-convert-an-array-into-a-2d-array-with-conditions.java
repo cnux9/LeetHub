@@ -22,10 +22,9 @@ class Solution {
             } else {
                 numByCount[i] = new int[0];
             }
-            
-            System.out.println(i + " " + Arrays.toString(numByCount[i]));
+            // System.out.println(i + " " + Arrays.toString(numByCount[i]));
         }
-        System.out.println();
+        // System.out.println();
         // make answer 2d array
         List<Integer>[] answer = new ArrayList[maxCount];
         for (int i=0;i<maxCount;i++) {
@@ -38,7 +37,7 @@ class Solution {
                 }
             }
             answer[i] = streamBuilder.build().boxed().collect(Collectors.toList());
-            System.out.println(answer[i].toString());
+            // System.out.println(answer[i].toString());
         }
         return Arrays.stream(answer).toList();
     }
