@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+    private HashMap<TreeNode, Integer> maxDepthDict = new HashMap<>(); 
+
     public int diameterOfBinaryTree(TreeNode root) {
         int result = 0;
         if (root.left != null) {
@@ -38,6 +40,10 @@ class Solution {
     }
 
     private int maxDepthOfBinaryTree(TreeNode root) {
+        if (maxDepthDict.containsKey(root)) {
+            return maxDepthDict.get(root);
+        }
+
         int result = 0;
         if (root.left != null) {
             result = maxDepthOfBinaryTree(root.left) + 1;
@@ -45,6 +51,8 @@ class Solution {
         if (root.right != null) {
             result = Math.max(result, maxDepthOfBinaryTree(root.right) + 1);
         }
+
+        maxDepthDict.put(root, result);
         return result;
     }
 }
