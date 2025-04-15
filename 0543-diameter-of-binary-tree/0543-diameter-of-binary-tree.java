@@ -20,9 +20,10 @@ class Solution {
             result = Math.max(result, diameterOfBinaryTree(root.left));
         }
         if (root.right != null) {
-            int temp = Math.max(result, diameterOfBinaryTree(root.right));
+            result = Math.max(result, diameterOfBinaryTree(root.right));
         }
-        
+        // System.out.println(root.val + "  fisrt case: " + result);
+
         int temp = 0;
         if (root.left != null) {
             temp += maxDepthOfBinaryTree(root.left) + 1;
@@ -30,9 +31,9 @@ class Solution {
         if (root.right != null) {
             temp += maxDepthOfBinaryTree(root.right) + 1;
         }
-        if (temp > result) {
-            result = temp;
-        }
+        result = Math.max(result, temp);
+
+        // System.out.println(root.val + "  second case: " + result);
         return result;
     }
 
