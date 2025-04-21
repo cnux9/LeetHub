@@ -1,12 +1,14 @@
 // import java.util.stream.IntStream;
 
 class CombinationIterator {
+    // String characters;
     int[] charactersArray;
     int[] indexArray;
     boolean hasNext = true;
 
     public CombinationIterator(String characters, int combinationLength) {
-        this.charactersArray = characters.chars().sorted().toArray();
+        // this.charactersArray = characters.chars().sorted().toArray();
+        this.charactersArray = characters.chars().toArray();
 
         // this.characters = characters;
         this.indexArray = IntStream.range(0, combinationLength).toArray();
