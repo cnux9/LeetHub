@@ -18,21 +18,22 @@ class CombinationIterator {
         if (!this.hasNext) {
             return null;
         }
+        
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < indexArray.length; i++) {
             sb.append((char) charactersArray[indexArray[i]]);
         }
 
-        System.out.println(sb.toString());
+        // System.out.println(sb.toString());
         hasNext = false;
         for (int i = indexArray.length-1; i >= 0; i--) {
-            System.out.println("loop " + i);
+            // System.out.println("loop " + i);
             if (indexArray[i] != charactersArray.length - (indexArray.length - i)) {
                 indexArray[i]++;
                 for (int j = 1; j + i < indexArray.length; j++) {
-                    System.out.println("    loop " + i + " : " + j);
+                    // System.out.println("    loop " + i + " : " + j);
                     indexArray[j + i] = indexArray[i] + j;
-                    System.out.println("        " + indexArray[j + i]);
+                    // System.out.println("        " + indexArray[j + i]);
                 }
                 hasNext = true;
                 break;
@@ -42,7 +43,7 @@ class CombinationIterator {
         //     return null;
         // }
         
-        System.out.println("loop end ");
+        // System.out.println("loop end ");
         return sb.toString();
     }
     
