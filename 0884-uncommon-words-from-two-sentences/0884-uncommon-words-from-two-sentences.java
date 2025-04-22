@@ -1,16 +1,31 @@
 class Solution {
     public String[] uncommonFromSentences(String s1, String s2) {
-        Map<String, Integer> count = new HashMap<>();
+        Map<String, Boolean> wordCount = new HashMap<>();
 
-        for (String w : s1.split(" "))
-            count.merge(w, 1, Integer::sum);
+        for (String word : s1.split(" ")) {
+            if (wordCount.containsKey(word)) {
+                wordCount.put(word, true);
+            } else {
+                wordCount.put(word, false);
+            }
+        }
 
-        for (String w : s2.split(" "))
-            count.merge(w, 1, Integer::sum);
+        for (String word : s2.split(" ")) {
+            if (wordCount.containsKey(word)) {
+                wordCount.put(word, true);
+            } else {
+                wordCount.put(word, false);
+            }
+        }
 
-        return count.entrySet().stream()
-                    .filter(e -> e.getValue() == 1)
-                    .map(Map.Entry::getKey)
-                    .toArray(String[]::new);
+        List<String> result = new ArrayList<>();
+
+        for (String word : wordCount.keySet()) {
+            if (!wordCount.get(word)) {
+                result.add(word);
+            }
+        }
+
+        return result.stream().toArray(String[]::new);
     }
 }
