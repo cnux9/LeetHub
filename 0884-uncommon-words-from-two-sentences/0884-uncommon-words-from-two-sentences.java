@@ -1,31 +1,25 @@
 class Solution {
     public String[] uncommonFromSentences(String s1, String s2) {
-        Map<String, Boolean> wordCount = new HashMap<>();
+        Set<String> dict = new HashSet<>();
+        Set<String> multipleWords = new HashSet<>();
 
         for (String word : s1.split(" ")) {
-            if (wordCount.containsKey(word)) {
-                wordCount.put(word, true);
+            if (dict.contains(word)) {
+                multipleWords.add(word);
             } else {
-                wordCount.put(word, false);
+                dict.add(word);
             }
         }
 
         for (String word : s2.split(" ")) {
-            if (wordCount.containsKey(word)) {
-                wordCount.put(word, true);
+            if (dict.contains(word)) {
+                multipleWords.add(word);
             } else {
-                wordCount.put(word, false);
+                dict.add(word);
             }
         }
-
-        List<String> result = new ArrayList<>();
-
-        for (String word : wordCount.keySet()) {
-            if (!wordCount.get(word)) {
-                result.add(word);
-            }
-        }
-
-        return result.stream().toArray(String[]::new);
+        
+        dict.removeAll(multipleWords);
+        return dict.stream().toArray(String[]::new);
     }
 }
