@@ -4,7 +4,12 @@ class Solution {
         int count = 0;
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
-                productCount.merge(nums[i] * nums[j], 1, Integer::sum);
+                int val = nums[i] * nums[j];
+                if (productCount.containsKey(val)) {
+                    productCount.put(val, productCount.get(val) + 1);
+                } else {
+                    productCount.put(val, 1);
+                }
             }
         }
         for (int n : productCount.values()) {
