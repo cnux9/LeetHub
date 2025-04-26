@@ -1,21 +1,14 @@
 class Solution {
     public int tupleSameProduct(int[] nums) {
+        Map<Integer, Integer> productCount = new HashMap<>();
         int count = 0;
-        Arrays.sort(nums);
-        for (int i1 = 0; i1 < nums.length; i1++) {
-            for (int i2 = i1 + 1; i2 < nums.length; i2++) {
-                for (int i3 = i2 + 1; i3 < nums.length; i3++) {
-                    if (nums[i2] * nums[i3] % nums[i1] == 0) {
-                        int target = nums[i2] * nums[i3] / nums[i1];
-                        if (nums[i3] < target && target <= nums[nums.length-1]) {
-                            int pos = Arrays.binarySearch(nums, i3 + 1, nums.length, target);
-                            if (pos > -1) {
-                                count++;
-                            }
-                        }
-                    }
-                }
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                productCount.merge(nums[i] * nums[j], 1, Integer::sum);
             }
+        }
+        for (int n : productCount.values()) {
+            count += n * (n-1) / 2;
         }
         return count * 8;
     }
