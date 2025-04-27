@@ -14,7 +14,7 @@ class Solution {
                 right--;
             }
 
-            if (left < right && c[left] == '0' && c[right] == '1') {
+            if (left <= right && c[left] == '0' && c[right] == '1') {
                 System.out.println(" " + left + " " + right + ": changed");
                 c[left] = '1';
                 c[right] = '0';
