@@ -3,7 +3,9 @@ class Solution {
         char[] c = s.toCharArray();
         int left = 0;
         int right = c.length - 1;
+
         while (left <= right) {
+            System.out.println(left + " " + right);
             if (c[left] == '1') {
                 left++;
             }
@@ -12,7 +14,8 @@ class Solution {
                 right--;
             }
 
-            if (left <= right && c[left] == '0' && c[right] == '1') {
+            if (left < right && c[left] == '0' && c[right] == '1') {
+                System.out.println(" " + left + " " + right + ": changed");
                 c[left] = '1';
                 c[right] = '0';
             }
@@ -20,7 +23,7 @@ class Solution {
 
         c[left - 1] = '0';
         c[c.length - 1] = '1';
-        
+
         return String.valueOf(c);
     }
 }
