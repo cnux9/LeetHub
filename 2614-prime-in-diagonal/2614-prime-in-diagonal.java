@@ -2,7 +2,10 @@ class Solution {
     private Map<Integer, Boolean> primeDict = new HashMap<>();
 
     public int diagonalPrime(int[][] nums) {
-        System.out.println(nums.length + " " + nums[0].length);
+        // System.out.println(nums.length + " " + nums[0].length);
+        primeDict.put(1, false);
+        primeDict.put(2, true);
+
         int maxPrime = 0;
         for (int i = 0; i < nums.length; i++) {
             int target = nums[i][i];
@@ -27,13 +30,7 @@ class Solution {
         if (primeDict.containsKey(target)) {
             return primeDict.get(target);
         }
-        if (target == 1) {
-            return false;
-        }
         if (target % 2 == 0) {
-            if (target == 2) {
-                return true;
-            }
             return false;
         }
         for (int i = 3; i < target; i+=2) {
