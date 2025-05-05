@@ -17,8 +17,8 @@ class Solution {
         }
         for (int i = 0; i < nums.length; i++) {
             int target = nums[nums.length - i - 1][i];
-            if (isPrime(target)) {
-                if (maxPrime < target) {
+            if (maxPrime < target) {
+                if (isPrime(target)) {
                     maxPrime = target;
                 }
             }
