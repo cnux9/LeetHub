@@ -1,36 +1,20 @@
 class Solution {
     public int findJudge(int n, int[][] trust) {
-        for (int i = 1; i <= n; i++) {
-            boolean isJudge = true;
-            for (int[] rel : trust) {
-                if (rel[0] == i) {
-                    isJudge = false;
-                    break;
-                }
-            }
-            if (!isJudge) {
-                continue;
-            }
+        int[] followers = new int[n];
+        boolean[] hasFollowing = new boolean[n];
+        Arrays.fill(followers, 0);
+        Arrays.fill(hasFollowing, false);
 
-            for (int j = 1; j <= n; j++) {
-                if (j != i) {
-                    boolean isFound = false;
-                    for (int[] rel : trust) {
-                        if (rel[0] == j && rel[1] == i) {
-                            isFound = true;
-                            break;
-                        }
-                    }
-                    if (!isFound) {
-                        isJudge = false;
-                        break;
-                    }
-                }
+        for (int[] rel : trust) {
+            hasFollowing[rel[0]-1] = true;
+            followers[rel[1]-1]++;
+        }
+
+
+        for (int i = 0; i < n; i++) {
+            if (!hasFollowing[i] && followers[i]==n-1) {
+                return i+1;
             }
-            if (!isJudge) {
-                continue;
-            }
-            return i;
         }
         return -1;
     }
