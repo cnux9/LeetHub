@@ -9,7 +9,7 @@ class Solution {
         }
 
         for (int i = 0; i < n; i++) {
-            if (followers[i]==n-1) {
+            if (followers[i] == n-1) {
                 return i+1;
             }
         }
