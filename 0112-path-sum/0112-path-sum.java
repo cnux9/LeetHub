@@ -23,18 +23,27 @@ class Solution {
 
     private boolean hasPathSumInternal(TreeNode root, int targetSum) {
         System.out.println(root.val);
-        if (targetSum == root.val && root.right == null && root.left == null) {
-            return true;
-        }
-        if (targetSum < root.val) {
+        if (root.right == null) {
+            if (root.left == null) {
+                if (targetSum == root.val) {
+                    return true;
+                }
+                return false;
+            }
+            if (hasPathSum(root.left, targetSum-root.val)) {
+                return true;
+            }
             return false;
         }
-        if (root.right != null && hasPathSum(root.right, targetSum-root.val)) {
+        if (hasPathSum(root.right, targetSum-root.val)) {
             return true;
         }
-        if (root.left != null && hasPathSum(root.left, targetSum-root.val)) {
-            return true;
+        if (root.left != null) {
+            if (hasPathSum(root.left, targetSum-root.val)) {
+                return true;
+            }
         }
+
         return false;
     }
 }
