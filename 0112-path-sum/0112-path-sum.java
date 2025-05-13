@@ -22,7 +22,7 @@ class Solution {
     }
 
     private boolean hasPathSumInternal(TreeNode root, int targetSum) {
-        System.out.println(root.val);
+        // System.out.println(root.val);
         if (root.right == null) {
             if (root.left == null) {
                 return (targetSum == root.val);
