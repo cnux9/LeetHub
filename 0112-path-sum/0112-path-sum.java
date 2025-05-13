@@ -25,15 +25,9 @@ class Solution {
         System.out.println(root.val);
         if (root.right == null) {
             if (root.left == null) {
-                if (targetSum == root.val) {
-                    return true;
-                }
-                return false;
+                return (targetSum == root.val);
             }
-            if (hasPathSum(root.left, targetSum-root.val)) {
-                return true;
-            }
-            return false;
+            return hasPathSum(root.left, targetSum-root.val);
         }
         if (hasPathSum(root.right, targetSum-root.val)) {
             return true;
