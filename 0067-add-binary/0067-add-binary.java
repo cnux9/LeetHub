@@ -9,7 +9,7 @@ class Solution {
         int next = 0;
         String result = "";
         for (int i = 0; i < b.length(); i++) {
-            System.out.println(result + " : " + next + " : " + i);
+            // System.out.println(result + " : " + next + " : " + i);
             int cursor = Character.getNumericValue(b.charAt(b.length() - i - 1)) + next;
             next = 0;
             if (i <= a.length() - 1) {
