@@ -10,8 +10,17 @@ class Solution {
         }
 
         int max = 0;
+        int maxIndex = -1;
         for (int i = 0; i < nums.length; i++) {
             if (i != 0 && nums[i-1] <= nums[i]) {
+                continue;
+            }
+            if (maxIndex != -1 && maxIndex > i) {
+                int val = nums[maxIndex] - nums[i];
+                if (max < val) {
+                    // System.out.println(max + " " + val + " // " + i +  " : " + j);
+                    max = val;
+                }
                 continue;
             }
             for (int j = i+1; j < nums.length; j++) {
@@ -19,6 +28,7 @@ class Solution {
                 if (max < val) {
                     // System.out.println(max + " " + val + " // " + i +  " : " + j);
                     max = val;
+                    maxIndex = j;
                 }
             }
         }
