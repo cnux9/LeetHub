@@ -11,6 +11,7 @@ class Solution {
             if (nums[i] > nums[firstMaxIndex]) {
                 secondMaxIndex = firstMaxIndex;
                 firstMaxIndex = i;
+                continue;
             } else if (nums[i] > nums[secondMaxIndex]) {
                 secondMaxIndex = i;
             }
