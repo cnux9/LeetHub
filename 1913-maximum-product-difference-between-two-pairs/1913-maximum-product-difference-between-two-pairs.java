@@ -8,18 +8,21 @@ class Solution {
         int secondMinIndex = a;
 
         for (int i = 2; i < nums.length; i++) {
-            if (nums[i] > nums[firstMaxIndex]) {
-                secondMaxIndex = firstMaxIndex;
-                firstMaxIndex = i;
-                continue;
-            } else if (nums[i] > nums[secondMaxIndex]) {
+            if (nums[i] > nums[secondMaxIndex]) {
+                if (nums[i] > nums[firstMaxIndex]) {
+                    secondMaxIndex = firstMaxIndex;
+                    firstMaxIndex = i;
+                    continue;
+                }
                 secondMaxIndex = i;
             }
-            if (nums[i] < nums[firstMinIndex]) {
-                secondMinIndex = firstMinIndex;
-                firstMinIndex = i;
-            } else if (nums[i] < nums[secondMinIndex]) {
-                secondMinIndex = i;
+            if (nums[i] < nums[secondMinIndex]) {
+                if (nums[i] < nums[firstMinIndex]) {
+                    secondMinIndex = firstMinIndex;
+                    firstMinIndex = i;
+                } else {
+                    secondMinIndex = i;
+                }
             }
         }
         // System.out.println(firstMaxIndex + " " + secondMaxIndex+ " " + secondMinIndex + " " + firstMaxIndex);
