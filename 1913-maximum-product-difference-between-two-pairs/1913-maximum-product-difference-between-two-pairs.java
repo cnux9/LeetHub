@@ -1,8 +1,6 @@
 class Solution {
     public int maxProductDifference(int[] nums) {
-        
         int a = nums[0] > nums[1] ? 0 : 1;
-
 
         int firstMaxIndex = a;
         int secondMaxIndex = 1-a;
@@ -23,7 +21,7 @@ class Solution {
                 secondMinIndex = i;
             }
         }
-        System.out.println(firstMaxIndex + " " + secondMaxIndex+ " " + secondMinIndex + " " + firstMaxIndex);
+        // System.out.println(firstMaxIndex + " " + secondMaxIndex+ " " + secondMinIndex + " " + firstMaxIndex);
         return nums[firstMaxIndex] * nums[secondMaxIndex] - nums[firstMinIndex] * nums[secondMinIndex];
     }
 }
