@@ -1,37 +1,50 @@
 class Solution {
+    int[] cases = new int[] {0, 1};
 
     public int minCostClimbingStairs(int[] cost) {
-        Map<Integer, Integer> indexMinDict = new HashMap<>();
-        int[] steps = new int[] {1, 2};
-
-        List<int[]> queue = new ArrayList<>();
-        // {present index, accumulated cost}
-        queue.add(new int[] {-1, 0});
-        int min = -1;
-        while (!queue.isEmpty()) {
-            int[] target = queue.remove(0);
-            // System.out.println("(" + target[0] + ", " + target[1] + ")");
-            
-            for (int i : steps) {
-                // System.out.println("start");
-                if (cost.length <= target[0] + i) {
-                    // System.out.println("continue: 1");
-                    if (min == -1 || min > target[1]) {
-                        min = target[1];
-                    }
-                    continue;
-                }
-                int[] step = new int[] {target[0] + i, target[1] + cost[target[0] + i]};
-                // System.out.println("index: " + step[0] + ", cost: " + step[1] + "");
-
-                if (indexMinDict.containsKey(step[0]) && indexMinDict.get(step[0]) <= step[1]) {
-                    continue;
-                }
-                indexMinDict.put(step[0], step[1]);
-                // System.out.println(step + " add");
-                queue.add(step);
-            }
+        if (cost.length <= 1) {
+            return 0;
+        } else if (cost.length == 2) {
+            return Math.min(cost[0], cost[1]);
         }
-        return min;
+
+        List<Integer> results = new ArrayList<>();
+        int mid = cost.length/2;
+
+        for (int i : cases) {
+            int before = minCostClimbingStairs(Arrays.copyOfRange(cost, 0, mid + i - 1));
+            int after = minCostClimbingStairs(Arrays.copyOfRange(cost, mid + i, cost.length));
+            // int after = minCostClimbingStairsAfter(Arrays.copyOfRange(cost, mid + i, cost.length));
+            int result = before + cost[mid + i - 1] + after;
+            // int result = minCostClimbingStairs(Arrays.copyOfRange(cost, 0, mid + i)) + minCostClimbingStairs(Arrays.copyOfRange(cost, mid + i, cost.length));
+            // System.out.println("min: " + (mid + i) + ", before: " + before + ", after: " + after + ", result: " + result + ",  " + Arrays.toString(cost));
+            results.add(result);
+        }
+
+        return Collections.min(results);
+    }
+
+    public int minCostClimbingStairsAfter(int[] cost) {
+        if (cost.length == 0) {
+            return 0;
+        } else if (cost.length == 1) {
+            return cost[0];
+        } else if (cost.length == 2) {
+            return Math.min(cost[0], cost[1]);
+        }
+
+        List<Integer> results = new ArrayList<>();
+        int mid = cost.length/2;
+
+        for (int i : cases) {
+            int before = minCostClimbingStairs(Arrays.copyOfRange(cost, 0, mid + i));
+            int after = minCostClimbingStairsAfter(Arrays.copyOfRange(cost, mid + i, cost.length));
+            int result = before + after;
+            // int result = minCostClimbingStairs(Arrays.copyOfRange(cost, 0, mid + i)) + minCostClimbingStairs(Arrays.copyOfRange(cost, mid + i, cost.length));
+            System.out.println("min: " + (mid + i) + ", before: " + before + ", after: " + after + ", result: " + result + ",  " + Arrays.toString(cost));
+            results.add(result);
+        }
+
+        return Collections.min(results);
     }
 }
