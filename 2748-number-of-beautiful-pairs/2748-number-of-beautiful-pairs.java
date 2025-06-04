@@ -12,7 +12,15 @@ class Solution {
         int[] primes = new int[] {2, 3, 5, 7};
         int count = 0;
         for (int i = 0; i < nums.length; i++) {
+            if (digits[i][0] == 1) {
+                count += nums.length - i - 1;
+                continue;
+            }
             for (int j = i + 1; j < nums.length; j++) {
+                if (digits[j][1] == 1) {
+                    count++;
+                    continue;
+                }
                 // System.out.println("pow: " + Math.pow(10, (int)Math.log10(nums[i])));
                 int val1 = digits[i][0];
                 int val2 = digits[j][1];
