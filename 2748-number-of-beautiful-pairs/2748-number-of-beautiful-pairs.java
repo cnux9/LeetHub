@@ -2,7 +2,10 @@ class Solution {
     public int countBeautifulPairs(int[] nums) {
         int[][] digits = new int[nums.length][2];
         for (int i = 0; i < nums.length; i++) {
-            digits[i][0] = nums[i] / (int)Math.pow(10, (int)Math.log10(nums[i]));
+            digits[i][0] = nums[i];
+            while (digits[i][0] >= 10) {
+                digits[i][0] /= 10;
+            }
             digits[i][1] = nums[i] % 10;
         }
 
