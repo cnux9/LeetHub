@@ -5,17 +5,12 @@ class Solution {
             if (nums[i] != 0) {
                 continue;
             }
-            if (isValid(nums.clone(), i, true)) {
-                count++;
-            }
-            if (isValid(nums.clone(), i, false)) {
-                count++;
-            }
+            count += isValid(nums.clone(), i);
         }
         return count;
     }
 
-    private boolean isValid(int[] nums, int curr, boolean isRight) {
+    private int isValid(int[] nums, int curr) {
         int sum1 = 0;
         for (int i = 0; i < curr; i++) {
             sum1 += nums[i];
@@ -24,12 +19,19 @@ class Solution {
         for (int i = curr + 1; i < nums.length; i++) {
             sum2 += nums[i];
         }
-        if (isRight) {
-            int diff = sum2 - sum1;
-            return 0 <= diff && diff <= 1;
-        } else {
-            int diff = sum1 - sum2;
-            return 0 <= diff && diff <= 1;
-        }
+        
+        int count = 0;
+        
+        int diff = sum2 - sum1;
+        if (0 <= diff && diff <= 1) {
+            count++;
+        };
+        
+        diff = sum1 - sum2;
+        if (0 <= diff && diff <= 1) {
+            count++;
+        };
+
+        return count;
     }
 }
