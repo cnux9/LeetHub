@@ -16,37 +16,20 @@ class Solution {
     }
 
     private boolean isValid(int[] nums, int curr, boolean isRight) {
-        // System.out.println("");
-        // System.out.println("new case");
-        // System.out.println("");
-        while (0 <= curr && curr < nums.length) {
-            // System.out.println("curr: " + curr + ", nums[curr]: " + nums[curr] + "");
-            // for (int i = 0; i < nums.length; i++) {
-            //     int n = nums[i];
-            //     if (i == curr) {
-            //         System.out.print("[" + n + "], ");
-            //     } else {
-            //         System.out.print(n + ", ");
-            //     }
-            // }
-            // System.out.println("");
-            if (nums[curr] == 0) {
-                // System.out.println("zero skipped!");
-                curr += (isRight ? 1 : -1);
-            } else {
-                // System.out.println("decrement and reversed");
-                nums[curr]--;
-                isRight = !isRight;
-                curr += (isRight ? 1 : -1);
-            }
+        int sum1 = 0;
+        for (int i = 0; i < curr; i++) {
+            sum1 += nums[i];
         }
-        for (int n : nums) {
-            if (n != 0) {
-                // System.out.println("false");
-                return false;
-            }
+        int sum2 = 0;
+        for (int i = curr + 1; i < nums.length; i++) {
+            sum2 += nums[i];
         }
-        // System.out.println("true");
-        return true;
+        if (isRight) {
+            int diff = sum2 - sum1;
+            return 0 <= diff && diff <= 1;
+        } else {
+            int diff = sum1 - sum2;
+            return 0 <= diff && diff <= 1;
+        }
     }
 }
