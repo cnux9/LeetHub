@@ -17,7 +17,7 @@ class Solution {
             }
             String val = sb.toString();
             if (val.compareTo(min) < 0) {
-                min = val;
+                return val;
             }
         }
         return min;
