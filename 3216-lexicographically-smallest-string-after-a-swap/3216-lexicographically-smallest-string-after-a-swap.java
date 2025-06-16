@@ -2,7 +2,7 @@ class Solution {
     public String getSmallestString(String s) {
         String min = s;
         for (int i = 0; i < s.length() - 1; i++) {
-            if (s.charAt(i) % 2 != s.charAt(i + 1) % 2) {
+            if (s.charAt(i) % 2 != s.charAt(i + 1) % 2 || s.charAt(i) < s.charAt(i + 1)) {
                 continue;
             }
             StringBuilder sb = new StringBuilder();
