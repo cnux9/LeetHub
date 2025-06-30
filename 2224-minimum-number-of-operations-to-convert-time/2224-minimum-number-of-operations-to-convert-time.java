@@ -23,16 +23,8 @@ class Solution {
 
 
     private int getMinute(String time) {
-        int hour = twoLettersToInt(time, 0);
-        int minute = twoLettersToInt(time, 3);
-        // System.out.println("gm:");
-        // System.out.println(hour);
-        // System.out.println(minute);
-        // System.out.println();
+        int hour = Integer.valueOf(time.substring(0, 2));
+        int minute = Integer.valueOf(time.substring(3, 5));
         return hour * 60 + minute;
-    }
-
-    private int twoLettersToInt(String s, int index) {
-        return Integer.valueOf(s.substring(index, index + 2));
     }
 }
