@@ -17,11 +17,8 @@ class Solution {
         q = 5;
         count += r / q;
         r %= q;
-        
-        q = 1;
-        count += r / q;
 
-        return count;
+        return count + r;
     }
 
 
