@@ -2,12 +2,7 @@ class Solution {
     public int convertTime(String current, String correct) {
         int diff = getMinute(current) - getMinute(correct);
         int count = 0;
-        // int[] possibilities = new int[] {Math.abs(diff), diff + 1440, 1440 - diff};
-        // Arrays.stream(possibilities).forEach(i -> System.out.println(i));
-        // int r = Arrays.stream(possibilities).min().orElse(0);
         int r = Math.abs(diff);
-
-        // System.out.println(r);
 
         int q;
 
@@ -25,7 +20,6 @@ class Solution {
         
         q = 1;
         count += r / q;
-        r %= q;
 
         return count;
     }
