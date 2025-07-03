@@ -12,7 +12,7 @@ class Solution {
             }
             result = sum;
 
-            if (test_count == 50) {
+            if (test_count == 30) {
                 return false;
             }
             test_count++;
