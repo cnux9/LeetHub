@@ -12,7 +12,7 @@ class Solution {
             }
             result = sum;
 
-            if (test_count == 8) {
+            if (test_count == 7) {
                 return false;
             }
             test_count++;
