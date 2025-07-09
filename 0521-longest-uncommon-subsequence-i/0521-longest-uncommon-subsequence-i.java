@@ -17,6 +17,7 @@ class Solution {
                     }
                     if (isSame) {
                         hasSubsequence = true;
+                        break;
                     }
                 }
                 if (!hasSubsequence) {
