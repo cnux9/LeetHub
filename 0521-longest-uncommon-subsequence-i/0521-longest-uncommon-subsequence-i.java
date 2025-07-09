@@ -6,17 +6,21 @@ class Solution {
         int length = a.length();
         for (int l = length - 1; l > 0; l--) {
             for (int i = 0; i < length - l; i++) {
+                boolean hasSubsequence = false;
                 for (int j = 0; j < length - l; j++) {
-                    boolean isDifferent = false;
+                    boolean isSame = true;
                     for (int k = 0; k <= l; k++) {
                         if (a.charAt(i + k) != b.charAt(j + k)) {
-                            isDifferent = true;
+                            isSame = false;
                             break;
                         }
                     }
-                    if (isDifferent) {
-                        return l + 1;
+                    if (isSame) {
+                        hasSubsequence = true;
                     }
+                }
+                if (!hasSubsequence) {
+                    return l + 1;
                 }
             }
         }
