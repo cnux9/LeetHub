@@ -1,16 +1,10 @@
 class Solution {
     public int maxWidthOfVerticalArea(int[][] points) {
-        List<Integer> x = new ArrayList<>();
-        for (int[] p : points) {
-            x.add(p[0]);
-        }
-
-        Integer[] xArray = x.toArray(new Integer[0]);
-        Arrays.sort(xArray);
+        Arrays.sort(points, Comparator.comparingInt(a -> a[0]));
         
         int max = 0;
-        for (int i = 1; i < xArray.length; i++) {
-            int diff = xArray[i] - xArray[i-1];
+        for (int i = 1; i < points.length; i++) {
+            int diff = points[i][0] - points[i-1][0];
             if (diff > max) {
                 max = diff;
             }
