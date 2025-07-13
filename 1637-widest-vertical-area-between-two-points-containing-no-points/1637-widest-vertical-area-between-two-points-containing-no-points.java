@@ -1,6 +1,6 @@
 class Solution {
     public int maxWidthOfVerticalArea(int[][] points) {
-        Set<Integer> x = new HashSet<>();
+        List<Integer> x = new ArrayList<>();
         for (int[] p : points) {
             x.add(p[0]);
         }
