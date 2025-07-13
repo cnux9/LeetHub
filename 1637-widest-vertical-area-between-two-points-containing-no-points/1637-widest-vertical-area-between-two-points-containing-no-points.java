@@ -5,7 +5,7 @@ class Solution {
             x.add(p[0]);
         }
 
-        Integer[] xArray = x.toArray(new Integer[x.size()]);
+        Integer[] xArray = x.toArray(new Integer[0]);
         Arrays.sort(xArray);
         
         int max = 0;
