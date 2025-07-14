@@ -4,7 +4,7 @@ class Solution {
         int count = 0;
         int lineCount = 1;
         for (int i = 0; i < s.length(); i++) {
-            System.out.println(i + " " + String.valueOf(s.charAt(i)) + " " + count + " " + lineCount);
+            // System.out.println(i + " " + String.valueOf(s.charAt(i)) + " " + count + " " + lineCount);
             // System.out.println(i + " " + count + " " + lineCount);
             int ascii = (int)s.charAt(i) - 97;
 
