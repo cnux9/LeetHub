@@ -31,10 +31,10 @@ class Solution {
 
         int product = 1;
 
-        int[] countArr = new int[] {0, 0, 0, 0};
-        int[] gcdArr = new int[] {4, 4, 4, 4};
-        int[] lcmArr = new int[] {0, 0, 0, 0};
-        for (int i = start; i < end; i++) {
+        int[] countArr = primeArr[start].clone();
+        int[] gcdArr = primeArr[start].clone();
+        int[] lcmArr = primeArr[start].clone();
+        for (int i = start + 1; i < end; i++) {
             int[] returnedPrimes = primeArr[i];
             // System.out.println("returnedPrimes: " + n + " -> " + Arrays.toString(returnedPrimes));
 
@@ -61,9 +61,7 @@ class Solution {
         // System.out.println("lcmArr: " + Arrays.toString(lcmArr));
 
         for (int i = 0; i < primes.length; i++) {
-            if (gcdArr[i] != 4) {
-                lcmArr[i] += gcdArr[i];
-            }
+            lcmArr[i] += gcdArr[i];
             if (lcmArr[i] != countArr[i]) {
                 return false;
             }
@@ -79,8 +77,6 @@ class Solution {
         int q = n;
         int i = 0;
         while (q > 1) {
-            // System.out.println(q + "");
-
             int p = primes[i];
             if (q % p == 0) {
                 countArr[i]++;
