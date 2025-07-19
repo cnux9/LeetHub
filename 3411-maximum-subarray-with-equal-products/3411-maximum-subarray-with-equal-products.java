@@ -1,9 +1,14 @@
 class Solution {
     int[] primes = new int[] {2, 3, 5, 7};
-    int[] nums;
+    int[][] primeArr;
 
     public int maxLength(int[] nums) {
-        this.nums = nums;
+        primeArr = new int[nums.length][];
+
+        for (int i = 0; i < nums.length; i++) {
+            primeArr[i] = getPrimes(nums[i]);
+        }
+
         for (int len = nums.length; len > 0; len--) {
             int[] indices = new int[len];
             for (int i = 0; i < indices.length; i++) {
@@ -30,9 +35,7 @@ class Solution {
         int[] gcdArr = new int[] {4, 4, 4, 4};
         int[] lcmArr = new int[] {0, 0, 0, 0};
         for (int i = start; i < end; i++) {
-            int n = nums[i];
-
-            int[] returnedPrimes = getPrimes(n);
+            int[] returnedPrimes = primeArr[i];
             // System.out.println("returnedPrimes: " + n + " -> " + Arrays.toString(returnedPrimes));
 
             for (int j = 0; j < countArr.length; j++) {
@@ -52,14 +55,6 @@ class Solution {
                 }
             }
         }
-
-        // System.out.println("countArr: " + Arrays.toString(countArr));
-        // for (int c : countArr) {
-        //     if (c == 1) {
-        //         return false;
-        //     }
-        // }
-
 
         // System.out.println("countArr: " + Arrays.toString(countArr));
         // System.out.println("gcdArr: " + Arrays.toString(gcdArr));
