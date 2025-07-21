@@ -1,10 +1,13 @@
 class Solution {
+    private static final long GL = 100;
+    private static final long LL = 10000;
+
     int[] nums;
 
     private class Node {
         Node left, right;
         int start, end;
-        long product, gcd, lcm;
+        long val;
 
         Node(int start, int end) {
             this.start = start;
@@ -15,15 +18,27 @@ class Solution {
                 this.left = new Node(start, mid);
                 this.right = new Node(mid, end);
                 
-                this.product = this.left.product * this.right.product;
-                this.gcd = getGcd(this.left.gcd, this.right.gcd);
-                this.lcm = getLcm(this.left.lcm, this.right.lcm);
+                long temp = this.left.val;
+                long lp = temp / (GL * LL);
+                temp %= (GL * LL);
+                long lg = temp / LL;
+                long ll = temp % LL;
+
+                temp = this.right.val;
+                long rp = temp / (GL * LL);
+                temp %= (GL * LL);
+                long rg = temp / LL;
+                long rl = temp % LL;
+
+                this.val = lp * rp;
+                this.val = this.val * GL + getGcd(lg, rg);
+                this.val = this.val * LL + getLcm(ll, rl);
             } else {
                 this.left = null;
                 this.right = null;
-                this.product = nums[start];
-                this.gcd = nums[start];
-                this.lcm = nums[start];
+                this.val = nums[start];
+                this.val = this.val * GL + nums[start];
+                this.val = this.val * LL + nums[start];
             }
         }
 
@@ -35,10 +50,10 @@ class Solution {
             return true;
         }
 
-        public long[] getValues(int start, int end) {
+        public long getValues(int start, int end) {
             // System.out.println("called node: " + this.start + ", " + this.end);
             if (this.left == null) {
-                return new long[] {this.product, this. gcd, this.lcm};
+                return this.val;
             }
             // System.out.println("1");
             boolean isLeftValid = this.left.isValid(start, end);
@@ -59,9 +74,15 @@ class Solution {
         for (int len = nums.length; len > 0; len--) {
             for (int i = 0; i + len - 1 < nums.length; i++) {
                     
-                long[] arr = root.getValues(i, i + len);
+                long val = root.getValues(i, i + len);
                 // System.out.println(Arrays.toString(arr));
-                if (arr[0] == arr[1] * arr[2]) {
+                        
+                long p = val / (GL * LL);
+                val %= (GL * LL);
+                long g = val / LL;
+                long l = val % LL;
+
+                if (p == g * l) {
                     return len;
                 }
             }
@@ -77,12 +98,20 @@ class Solution {
         return (a * b) / getGcd(a, b);
     }
 
-    private long[] getValuesOtTwo(long[] a, long[] b) {
-        long[] arr = new long[] {
-            a[0] * b[0],
-            getGcd(a[1], b[1]),
-            getLcm(a[2], b[2])
-        };
-        return arr;
+    private long getValuesOtTwo(long a, long b) {
+        long ap = a / (GL * LL);
+        a %= (GL * LL);
+        long ag = a / LL;
+        long al = a % LL;
+
+        long bp = b / (GL * LL);
+        b %= (GL * LL);
+        long bg = b / LL;
+        long bl = b % LL;
+
+        long val = ap * bp;
+        val = val * GL + getGcd(ag, bg);
+        val = val * LL + getLcm(al, bl);
+        return val;
     }
 }
