@@ -1,6 +1,6 @@
 class Solution {
-    private static final long GL = 11;
-    private static final long LL = 2521;
+    private static final char GL = 11;
+    private static final short LL = 2521;
 
     int[] nums;
 
