@@ -35,7 +35,8 @@ class Solution {
     }
 
     private boolean isValidArr(int start, int end) {
-        // System.out.println("isValidArr: " + start + ", " + end);
+        System.out.println();
+        System.out.println("isValidArr: " + start + ", " + end);
 
         int product = 1;
 
@@ -44,13 +45,13 @@ class Solution {
         int[] gcdArr = new int[] {4, 4, 4, 4};
         int[] lcmArr = new int[] {0, 0, 0, 0};
         for (int i = start; i < end; i++) {
-            if (nums[i] == 1) {
-                gcdArr[0] = 0;
-                gcdArr[1] = 0;
-                gcdArr[2] = 0;
-                gcdArr[3] = 0;
-                continue;
-            }
+            // if (nums[i] == 1) {
+            //     gcdArr[0] = 0;
+            //     gcdArr[1] = 0;
+            //     gcdArr[2] = 0;
+            //     gcdArr[3] = 0;
+            //     continue;
+            // }
             int[] returnedPrimes = PRIME_EXP[nums[i] - 1];
             // System.out.println("returnedPrimes: " + n + " -> " + Arrays.toString(returnedPrimes));
 
@@ -59,7 +60,7 @@ class Solution {
 
                 countExpArr[j][returnedPrimes[j]]++;
                 if (returnedPrimes[j] != 0 && countExpArr[j][returnedPrimes[j]] > 2) {
-                    // System.out.println("=========" + start + ", " + end);
+                    System.out.println("=========" + start + ", " + end);
                     return false;
                 }
 
@@ -102,12 +103,49 @@ class Solution {
         // }
         
         for (int i = 0; i < countArr.length; i++) {
-            if (gcdArr[i] != 4) {
-                lcmArr[i] += gcdArr[i];
+
+            int count = 0;
+            int countAll = 0;
+            for (int j = 0; j < countExpArr[i].length; j++) {
+                if (countExpArr[i][j] > 0) {
+                    count++;
+                    if (j != 0) {
+                        countAll += countExpArr[i][j];
+                    }
+                }
             }
-            if (lcmArr[i] != countArr[i]) {
+            System.out.println("count : " + count + ", " + countAll);
+            if (count > 2) {
+                System.out.println("false1 : " + start + ", " + end);
                 return false;
             }
+            if (count == 2 && countAll > 2) {
+                System.out.println("false2 : " + start + ", " + end);
+
+                return false;
+            }
+            if (count == 2 && countAll == 2) {
+                for (int j = 1; j < countExpArr[i].length; j++) {
+                    if (countExpArr[i][j] > 1) {
+                    System.out.println("false2 : " + start + ", " + end);
+                        return false;
+                    }
+                }
+
+                // return false;
+            }
+            if (count == 1 && countExpArr[i][0] == 0 && countAll != 2) {
+                System.out.println("false3 : " + start + ", " + end);
+
+                return false;
+            }
+
+            // if (gcdArr[i] != 4) {
+            //     lcmArr[i] += gcdArr[i];
+            // }
+            // if (lcmArr[i] != countArr[i]) {
+            //     return false;
+            // }
         }
 
         return true;
