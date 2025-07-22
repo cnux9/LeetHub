@@ -35,8 +35,8 @@ class Solution {
     }
 
     private boolean isValidArr(int start, int end) {
-        System.out.println();
-        System.out.println("isValidArr: " + start + ", " + end);
+        // System.out.println();
+        // System.out.println("isValidArr: " + start + ", " + end);
 
         int product = 1;
 
@@ -60,7 +60,7 @@ class Solution {
 
                 countExpArr[j][returnedPrimes[j]]++;
                 if (returnedPrimes[j] != 0 && countExpArr[j][returnedPrimes[j]] > 2) {
-                    System.out.println("=========" + start + ", " + end);
+                    // System.out.println("=========" + start + ", " + end);
                     return false;
                 }
 
@@ -114,20 +114,20 @@ class Solution {
                     }
                 }
             }
-            System.out.println("count : " + count + ", " + countAll);
+            // System.out.println("count : " + count + ", " + countAll);
             if (count > 2) {
-                System.out.println("false1 : " + start + ", " + end);
+                // System.out.println("false1 : " + start + ", " + end);
                 return false;
             }
             if (count == 2 && countAll > 2) {
-                System.out.println("false2 : " + start + ", " + end);
+                // System.out.println("false2 : " + start + ", " + end);
 
                 return false;
             }
             if (count == 2 && countAll == 2) {
                 for (int j = 1; j < countExpArr[i].length; j++) {
                     if (countExpArr[i][j] > 1) {
-                    System.out.println("false2 : " + start + ", " + end);
+                        // System.out.println("false2 : " + start + ", " + end);
                         return false;
                     }
                 }
