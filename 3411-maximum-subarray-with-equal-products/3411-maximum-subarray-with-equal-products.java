@@ -59,7 +59,7 @@ class Solution {
 
                 countExpArr[j][returnedPrimes[j]]++;
                 if (returnedPrimes[j] != 0 && countExpArr[j][returnedPrimes[j]] > 2) {
-                    System.out.println("=========" + start + ", " + end);
+                    // System.out.println("=========" + start + ", " + end);
                     return false;
                 }
 
