@@ -76,6 +76,13 @@ class Solution {
 
                 return false;
             }
+            // if (count == 2 && countAll == 2 && countExpArr[i][0] == 0 ) {
+            //     return false;
+            // }
+            // if (count == 2 && countAll == 2 && countExpArr[i][0] != 0 ) {
+            //     for 
+            //     return false;
+            // }
             if (count == 2 && countAll == 2) {
                 for (int j = 1; j < countExpArr[i].length; j++) {
                     if (countExpArr[i][j] > 1) {
@@ -85,7 +92,7 @@ class Solution {
                 }
             }
             if (count == 1 && countExpArr[i][0] == 0 && countAll != 2) {
-                System.out.println("false3 : " + start + ", " + end);
+                // System.out.println("false3 : " + start + ", " + end);
 
                 return false;
             }
