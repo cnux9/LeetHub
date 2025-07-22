@@ -1,19 +1,17 @@
 class Solution {
-    static final int[][] PRIME_EXP = {   // {2,3,5,7} 지수
-        {0,0,0,0}, /*1*/
-        {1,0,0,0}, /*2*/
-        {0,1,0,0}, /*3*/
-        {2,0,0,0}, /*4*/
-        {0,0,1,0}, /*5*/
-        {1,1,0,0}, /*6*/
-        {0,0,0,1}, /*7*/
-        {3,0,0,0}, /*8*/
-        {0,2,0,0}, /*9*/
-        {1,0,1,0}  /*10*/
+    static final int[][] PRIME_EXP = {
+        {0,0,0,0},
+        {1,0,0,0},
+        {0,1,0,0},
+        {2,0,0,0},
+        {0,0,1,0},
+        {1,1,0,0},
+        {0,0,0,1},
+        {3,0,0,0},
+        {0,2,0,0},
+        {1,0,1,0}
     };
 
-    int[] primes = new int[] {2, 3, 5, 7};
-    int[][] primeArr;
     int[] nums;
 
     public int maxLength(int[] nums) {
@@ -42,6 +40,7 @@ class Solution {
         int product = 1;
 
         int[] countArr = new int[] {0, 0, 0, 0};
+        int[][] countExpArr = new int[][] {{0, 0, 0, 0}, {0, 0, 0}, {0, 0}, {0, 0}};
         int[] gcdArr = new int[] {4, 4, 4, 4};
         int[] lcmArr = new int[] {0, 0, 0, 0};
         for (int i = start; i < end; i++) {
@@ -57,9 +56,12 @@ class Solution {
 
             for (int j = 0; j < countArr.length; j++) {
                 countArr[j] += returnedPrimes[j];
-                // if (countArr[j] > 2) {
-                //     return false;
-                // }
+
+                countExpArr[j][returnedPrimes[j]]++;
+                if (returnedPrimes[j] != 0 && countExpArr[j][returnedPrimes[j]] > 2) {
+                    System.out.println("=========" + start + ", " + end);
+                    return false;
+                }
 
                 // gcd
                 if (gcdArr[j] > returnedPrimes[j]) {
@@ -77,19 +79,29 @@ class Solution {
         // System.out.println("gcdArr: " + Arrays.toString(gcdArr));
         // System.out.println("lcmArr: " + Arrays.toString(lcmArr));
 
+        // System.out.println("=========" + start + ", " + end);
         // if (end - start == 2) {
         //     return true;
         // } else {
         //     for (int p : gcdArr) {
-        //         System.out.println(p);
+        //         System.out.println("gcd : " + p);
         //         if (p != 0 && p != 4) {
-        //             System.out.println("dd");
+        //             System.out.println("====prime is not valid");
         //             return false;
         //         }
         //     }
+        //     System.out.println();
+        //     for (int p : lcmArr) {
+        //         System.out.println("lcm : " + p);
+        //         if (p != 0 && p != 1) {
+        //             System.out.println("====prime is not valid");
+        //             return false;
+        //         }
+        //     }
+        //     System.out.println();
         // }
         
-        for (int i = 0; i < primes.length; i++) {
+        for (int i = 0; i < countArr.length; i++) {
             if (gcdArr[i] != 4) {
                 lcmArr[i] += gcdArr[i];
             }
@@ -99,25 +111,5 @@ class Solution {
         }
 
         return true;
-    }
-
-    // 8 -> {3, 0, 0, 0}
-    private int[] getPrimes(int n) {
-        int[] countArr = new int[] {0, 0, 0, 0};
-
-        int q = n;
-        int i = 0;
-        while (q > 1) {
-            // System.out.println(q + "");
-
-            int p = primes[i];
-            if (q % p == 0) {
-                countArr[i]++;
-                q /= p;
-            } else {
-                i++;
-            }
-        }
-        return countArr;
     }
 }
