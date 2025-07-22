@@ -60,6 +60,17 @@ class Solution {
         // System.out.println("gcdArr: " + Arrays.toString(gcdArr));
         // System.out.println("lcmArr: " + Arrays.toString(lcmArr));
 
+        if (end - start == 2) {
+            return true;
+        } else {
+            
+            for (int p : gcdArr) {
+                if (p != 0) {
+                    return false;
+                }
+            }
+        }
+        
         for (int i = 0; i < primes.length; i++) {
             if (gcdArr[i] != 4) {
                 lcmArr[i] += gcdArr[i];
