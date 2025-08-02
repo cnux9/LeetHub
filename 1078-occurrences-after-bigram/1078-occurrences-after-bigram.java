@@ -9,7 +9,9 @@ class Solution {
             firstCheck[i] = words[i].equals(first);
         }
         for (int i = 1; i < words.length - 1; i++) {
-            secondCheck[i] = words[i].equals(second);
+            if (firstCheck[i - 1]) {
+                secondCheck[i] = words[i].equals(second);
+            }
         }
         for (int i = 2; i < words.length; i++) {
             if (firstCheck[i - 2] && secondCheck[i - 1]) {
