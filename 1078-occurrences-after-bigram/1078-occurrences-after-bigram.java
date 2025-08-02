@@ -9,6 +9,6 @@ class Solution {
                 }
             }
         }
-        return result.stream().toArray(String[]::new);
+        return result.toArray(String[]::new);
     }
 }
