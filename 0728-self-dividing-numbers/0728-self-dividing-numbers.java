@@ -10,7 +10,7 @@ class Solution {
     }
 
     private boolean isSelfDividingNumber(int n) {
-        List<Integer> digits = new ArrayList<>();
+        Set<Integer> digits = new HashSet<>();
         int left = n;
         while (left > 0) {
             int digit = left % 10;
