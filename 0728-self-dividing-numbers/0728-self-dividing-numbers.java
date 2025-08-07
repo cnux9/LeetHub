@@ -1,7 +1,8 @@
 class Solution {
+    int[] digits;
     public List<Integer> selfDividingNumbers(int left, int right) {
         List<Integer> result = new ArrayList<>();
-        int[] digits = getDigits(right + 1);
+        digits = getDigits(right + 1);
         for (int i = right; i >= left; i--) {
             // System.out.print(Arrays.toString(digits) + " ");
             int j;
@@ -14,7 +15,7 @@ class Solution {
             }
 
 
-            if (isSelfDividingNumber(digits, i)) {
+            if (isSelfDividingNumber(i)) {
                 result.add(i);
             }
         }
@@ -31,7 +32,7 @@ class Solution {
         return digits.stream().mapToInt(i -> i).toArray();
     }
 
-    private boolean isSelfDividingNumber(int[] digits, int n) {
+    private boolean isSelfDividingNumber(int n) {
         System.out.print(Arrays.toString(digits) + " ");
         int i;
         for (i = digits.length - 1; digits[i] == 0; i--) {
