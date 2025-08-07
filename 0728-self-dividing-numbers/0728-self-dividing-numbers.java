@@ -1,6 +1,6 @@
 class Solution {
     public List<Integer> selfDividingNumbers(int left, int right) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>(right - left);
         for (int i = left; i <= right; i++) {
             if (isSelfDividingNumber(i)) {
                 result.add(i);
