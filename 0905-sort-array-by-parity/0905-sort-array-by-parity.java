@@ -1,7 +1,8 @@
 class Solution {
     public int[] sortArrayByParity(int[] nums) {
         int evenCur = 0;
-        int oddCur = -1;
+        int oddCur = 1;
+        boolean isEven = true;
         while (oddCur < nums.length && evenCur < nums.length) {
             if (nums[evenCur] % 2 == 1) {
                 if (oddCur <= evenCur) {
