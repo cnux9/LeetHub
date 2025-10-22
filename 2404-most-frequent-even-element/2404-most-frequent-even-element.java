@@ -10,8 +10,9 @@ class Solution {
 
         int maxCount = 0;
         int maxValue = 0;
-        for (int key : count.keySet()) {
-            int value = count.get(key);
+        for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
             if (value > maxCount) {
                 maxCount = value;
                 maxValue = key;
