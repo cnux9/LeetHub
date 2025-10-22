@@ -11,10 +11,11 @@ class Solution {
         int maxCount = 0;
         int maxValue = 0;
         for (int key : count.keySet()) {
-            if (count.get(key) > maxCount) {
-                maxCount = count.get(key);
+            int value = count.get(key);
+            if (value > maxCount) {
+                maxCount = value;
                 maxValue = key;
-            } else if (count.get(key) == maxCount && maxValue > key) {
+            } else if (value == maxCount && maxValue > key) {
                 maxValue = key;
             }
         }
