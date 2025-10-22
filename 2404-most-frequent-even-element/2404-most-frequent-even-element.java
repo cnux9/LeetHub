@@ -3,15 +3,14 @@ class Solution {
         Map<Integer, Integer> count = new HashMap<>();
 
         for (int n : nums) {
-            count.put(n, count.getOrDefault(n, 1) + 1);
+            if (n % 2 == 0) {
+                count.put(n, count.getOrDefault(n, 1) + 1);
+            }
         }
 
         int maxCount = 0;
         int maxValue = 0;
         for (int key : count.keySet()) {
-            if (key % 2 == 1) {
-                continue;
-            }
             if (count.get(key) > maxCount) {
                 maxCount = count.get(key);
                 maxValue = key;
