@@ -23,11 +23,6 @@ class Solution {
                 cur--;
             }
         }
-        // if (isRight) {
-        //     result[cur] = nums[left];
-        // } else {
-        //     result[cur] = nums[right];
-        // }
         return result;
     }
 }
