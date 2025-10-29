@@ -21,15 +21,15 @@ class Solution {
         return result;
     }
 
-    private void internal(TreeNode node, String prevPath) {
+    private void internal(TreeNode node, String path) {
         if (node.left == null && node.right == null) {
-            result.add(prevPath);
+            result.add(path);
         } else {
             if (node.left != null) {
-                internal(node.left, prevPath + "->" + node.left.val);
+                internal(node.left, path + "->" + node.left.val);
             }
             if (node.right != null) {
-                internal(node.right, prevPath + "->" + node.right.val);
+                internal(node.right, path + "->" + node.right.val);
             }
         }
     }
