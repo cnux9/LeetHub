@@ -1,17 +1,18 @@
 class Solution {
     public boolean isSubstringPresent(String s) {
         char[] charArray = s.toCharArray();
-        Set<String> substringSet = new HashSet<>();
+        Map<Character, Set<Character>> substringMap = new HashMap<>();
         for (int i = 1; i < charArray.length; i++) {
             if (charArray[i - 1] == charArray[i]) {
                 return true;
             }
-            String substring = "" + charArray[i - 1] + charArray[i];
-            substringSet.add(substring);
+            if (!substringMap.containsKey(charArray[i - 1])) {
+                substringMap.put(charArray[i - 1], new HashSet<>());
+            }
+            substringMap.get(charArray[i - 1]).add(charArray[i]);
         }
         for (int i = 1; i < charArray.length; i++) {
-            String substring = "" + charArray[i] + charArray[i - 1];
-            if (substringSet.contains(substring)) {
+            if (substringMap.containsKey(charArray[i]) && substringMap.get(charArray[i]).contains(charArray[i - 1])) {
                 return true;
             }
         }
